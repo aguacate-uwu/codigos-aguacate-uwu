@@ -1,0 +1,54 @@
+import os
+
+# comando para limpiar la consola que se usará más adelante
+def clear(): 
+    command = 'clear'
+    if os.name in ('nt', 'dos'):
+        command = 'cls'
+    os.system(command)
+
+x = input("¿Sobre qué quieres hacer una lista? ")
+
+lista = []
+lista.append(input(f"Escribe un nombre de {x}: "))
+
+n = input("¿Cuantos elementos más quieres añadir a la lista? ")
+while n.isnumeric() == False:
+        print("Por favor escribe un número válido.")
+        n = input("¿Cuantos elementos más quieres añadir a la lista? ")
+
+n = int(n)
+
+def pregunta():
+    lista.append(input("Añadir "))
+
+while n > 0:
+    pregunta()
+    n -= 1
+
+# pregunta para guardar la lista en un .txt
+texto = "sin respuesta"
+while texto == "sin respuesta":
+    respuesta = input(f"Deseas guardar tu lista de {x} en un archivo de texto? [y/n] ")
+    if respuesta == "y" or respuesta == "Y":
+        texto = "sí"
+    elif respuesta == "n" or respuesta == "N":
+        texto = "no"
+    else: print("Esa no es una respuesta válida...")
+
+clear()
+
+lista.sort()
+print(f"Tu lista de {x} ordenada alfabéticamente:")
+
+for elementos in lista:
+    print(elementos)
+
+if texto == "sí":
+    print(f"Además un archivo con nombre lista_de_{x}.txt ha sido creado y guardado en tus archivos.")
+    with open(f"lista_de_{x}.txt", "a") as k:
+        for elementos in lista:
+            k.write(elementos + '\n')
+
+# hecho por @aguacate-uwu
+# agradecimientos a @TataQueen y al server de discord de illojuan
