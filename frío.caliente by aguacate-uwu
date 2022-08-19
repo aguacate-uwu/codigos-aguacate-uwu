@@ -1,0 +1,28 @@
+from random import randint
+from colorama import Fore, init
+init()
+
+n = (randint(1, 100))
+
+respuesta = "x"
+
+print(Fore.YELLOW + "\n¡Bienvenidx a mi juego de frío o caliente!\nEn este juego tendrás que adivinar un número y yo te diré si ese número está cerca (frío) o lejos (caliente).\n!Mucha suerte! :)\n")
+
+while n != respuesta:
+    respuesta = input("Elije un número del 0 al 100: ")
+    while respuesta.isnumeric() == False or int(respuesta) > 100:
+            respuesta = input("No es un número válido. Escoge un número del 0 al 100: ")
+    respuesta = int(respuesta)
+    if abs(respuesta - n) >= 50:
+        print(Fore.CYAN + "¡Muy frío!")
+    elif abs(respuesta - n) >= 25:
+        print(Fore.CYAN + "Frío.")
+    elif abs(respuesta - n) <= 5 and respuesta != n:
+        print(Fore.RED + "¡Muy caliente!")
+    elif abs(respuesta - n) <= 25 and respuesta != n:
+        print(Fore.RED + "Caliente.")
+
+if n == respuesta:
+    print(Fore.YELLOW + "¡Te has quemado! Acertaste.")
+
+# hecho por @aguacate-uwu
